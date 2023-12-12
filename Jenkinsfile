@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("Git clone") {
             steps {
-               git branch: "master", url: "https://github.com/vjpatil176/javamave.git"
+               git branch: "main", url: "https://github.com/vjpatil176/javamave.git"
             }
         }
         stage("Maven Build") {
