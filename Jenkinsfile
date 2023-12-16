@@ -14,7 +14,7 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-	stage['SonarQube analysis'] {
+	stage ('SonarQube analysis') {
 	sh "${scannerHome}/bin/sonar-scanner"
 	sh "mvn sonar:sonar"
 	}
