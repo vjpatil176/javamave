@@ -14,10 +14,14 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-	stage ('SonarQube analysis') {
-	sh "${scannerHome}/bin/sonar-scanner"
-	sh "mvn sonar:sonar"
-	}
+	stagel('build && SonarQube analysis') {
+	    steps{
+	        withSonarQubeEnv('sonarqube-10.3') {
+		     // optionally use a Maven environment you've configured already
+                	sh 'mvn sonar:sonar'
+              } 
+           }  
+        } 
      }
- }
+  }
 
