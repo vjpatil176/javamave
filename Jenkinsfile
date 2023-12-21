@@ -14,7 +14,7 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-	stagel('build && SonarQube analysis') {
+	stage('build && SonarQube analysis') {
 	    steps{
 	        withSonarQubeEnv('sonarqube-10.3') {
 		     // optionally use a Maven environment you've configured already
