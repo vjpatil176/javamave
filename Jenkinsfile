@@ -4,7 +4,7 @@ pipeline {
         PATH = "/opt/maven3.9.6/bin:$PATH"
     }
     stages {
-        stage("Git clone") {
+        stage("Git pull") {
             steps {
                git branch: "master", url: "https://github.com/vjpatil176/javamave.git"
             }
