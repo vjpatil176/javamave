@@ -14,14 +14,13 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-	stage('build && SonarQube analysis') {
-	    steps{
-	        withSonarQubeEnv('sonarqube-10.3') {
-		     // optionally use a Maven environment you've configured already
-                	sh 'mvn sonar:sonar'
-              } 
-           }  
-        } 
+            stage("DeployStaging") {
+            steps {
+        sshagent(['deployuser']) {
+                sh "scp -oStrictHostKeyChecking=no /var/lib/jenkins/workspace/Maven-boston-build-pipeline/webapp/target/webapp.war ec2-user@172.31.71.116:/opt/apache-tomcat-10.1.17/webapps"
+		} 
+            } 	  
+         } 
      }
   }
 
