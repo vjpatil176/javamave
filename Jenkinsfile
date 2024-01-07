@@ -14,13 +14,13 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-            stage("DeployStaging") {
+        stage("QA-Deploy") {
             steps {
-        sshagent(['deployuser']) {
-                sh "scp -oStrictHostKeyChecking=no /var/lib/jenkins/workspace/Maven-boston-build-pipeline/webapp/target/webapp.war ec2-user@172.31.71.116:/opt/apache-tomcat-10.1.17/webapps"
-		} 
-            } 	  
-         } 
+        	 sshagent(['deployuser']) {
+          	      sh "scp -oStrictHostKeyChecking=no /var/lib/jenkins/workspace/maven-build-code/webapp/target/webapp.war ec2-user@172.31.71.116:/opt/apache-tomcat-10.1.17/webapps"
+                }
+            }
+         }
      }
   }
 
