@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SONARQUBE_HOME = tool 'SonarQube'
+        PATH = "/opt/maven3.9.6/bin:$PATH"
     }
     stages {
         stage("Git pull") {
