@@ -14,6 +14,15 @@ pipeline {
                 sh "mvn clean install"
             }
         }
+         stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${SONARQUBE_HOME}/bin/sonar-scanner"
+                    }
+                }
+            }
+         }
             stage("DeployStaging") {
               steps {
         sshagent(['devops']) {
